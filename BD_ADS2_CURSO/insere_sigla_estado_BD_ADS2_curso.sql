@@ -1,0 +1,13 @@
+use ADS2_curso;
+update funcionarios set sigla_estado = "RS" where id = 1;
+update funcionarios set sigla_estado = "SC" where id = 2;
+update funcionarios set sigla_estado = "PR" where id = 3;
+update funcionarios set sigla_estado = "SP" where id = 4;
+update funcionarios set sigla_estado = "RJ" where id = 5;
+update funcionarios set sigla_estado = "RS" where id = 6;
+update funcionarios set sigla_estado = "SC" where id = 7;
+update funcionarios set sigla_estado = "PR" where id = 8;
+update funcionarios set sigla_estado = "SP" where id = 9;
+update funcionarios set sigla_estado = "RJ" where id = 10;
+update funcionarios set sigla_estado = "RS" where id = 11;
+select *from funcionarios;

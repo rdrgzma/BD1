@@ -1,0 +1,230 @@
+cria BD ads2_curso
+cria a tabela funcionarios 
+#Cria O banco de dados ADS2_curso;
+
+	create database if not exists ADS2_curso;
+
+	use ADS2_Curso;
+
+	CREATE TABLE IF NOT EXISTS funcionarios (
+
+    		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+ 
+   		 nome VARCHAR(45) NOT NULL,
+
+    		salario DOUBLE NOT NULL DEFAULT '0',
+
+    		departamento VARCHAR(45) NOT NULL,
+
+    		PRIMARY KEY (id)
+);
+
+inserir os dados na tabela funcionarios
+# insere dados na tabela funcionarios;
+
+use ADS2_curso;
+
+insert funcionarios (id, nome, salario, departamento) values (1,'Fernando', 1600, 'TI');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Guilherme', 2500, 'Juridico');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Fabio', 1700, 'TI');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Jose', 1800, 'Marketing');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Isabela', 5200, 'Juridico');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Marta', 3400, 'TI');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Cristina', 2550, 'Juridico');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Talita', 2700, 'TI');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Jorge', 1450, 'Marketing');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Albertina', 5200, 'Juridico');
+
+insert funcionarios (id, nome, salario, departamento) values (null, 'Maria', 3000, 'RH'); 
+
+
+
+
+cria a tabela estados
+#cria a tabela estados
+
+use ADS2_curso;
+
+CREATE TABLE IF NOT EXISTS estados (
+
+    sigla_estado CHAR(2) NOT NULL,
+
+    nome_estado CHAR(25) NOT NULL,
+
+    PRIMARY KEY (sigla_estado)
+);
+
+select * from estados;
+
+inserir dados na tabela estados
+#insere valores na tabela estado
+s
+use ADS2_curso;
+
+insert estados(sigla_estado,nome_estado) values('RS','Rio Grande do Sul');
+
+insert estados(sigla_estado,nome_estado) values('SC','Santa Catarina');
+
+insert estados(sigla_estado,nome_estado) values('PR','Parana');
+
+insert estados(sigla_estado,nome_estado) values('RJ','Rio de Janeiro');
+
+insert estados(sigla_estado,nome_estado) values('SP','Sao Paulo');
+
+insert estados(sigla_estado,nome_estado) values('MG','Minas Gerais');
+
+insert estados(sigla_estado,nome_estado) values ('MT', ' Mato Grosso');
+
+select *from estados;
+
+
+
+
+cria o campo sigla_estado na tabela funcionarios
+#cria campo na tabela funcionarios do banco de dados ADS2_curso
+
+use ADS2_Curso;
+
+alter table funcionarios add sigla_estado char(2) default null
+
+after departamento;
+
+SELECT
+ 
+    *
+FROM
+
+    funcionarios;
+
+determinar o campo sigla_estado na tabela funcionarios em chave estrangeira
+	use ADS2_curso;
+
+	alter table funcionarios
+add constraint Fk_funcionarios_ESTADOS foreign key (sigla_estado)
+
+	references estados(sigla_estado)
+
+	on delete restrict
+	
+on update restrict;
+
+
+Atualiza o campo sigla_estado na tabela funcionarios
+use ADS2_curso;
+
+update funcionarios set sigla_estado = "RS" where id = 1;
+
+update funcionarios set sigla_estado = "SC" where id = 2;
+
+update funcionarios set sigla_estado = "PR" where id = 3;
+
+update funcionarios set sigla_estado = "SP" where id = 4;
+
+update funcionarios set sigla_estado = "RJ" where id = 5;
+
+update funcionarios set sigla_estado = "RS" where id = 6;
+
+update funcionarios set sigla_estado = "SC" where id = 7;
+
+update funcionarios set sigla_estado = "PR" where id = 8;
+
+update funcionarios set sigla_estado = "SP" where id = 9;
+
+update funcionarios set sigla_estado = "RJ" where id = 10;
+
+update funcionarios set sigla_estado = "RS" where id = 11;
+
+select *from funcionarios;
+
+
+
+cria a tabela veiculos
+use ADS2_curso;
+
+CREATE TABLE IF NOT EXISTS veiculos (
+
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+    funcionario_ID INT UNSIGNED default NULL,
+
+    veiculo varchar(45) NOT NULL Default "",
+
+    placa varchar(7) NOT NULL Default "",
+
+    PRIMARY KEY (id)
+);
+
+select * from veiculos;
+
+inserir dados na tabela veiculos
+#insere valores na tabela estados
+
+use ADS2_curso;
+insert veiculos(id, funcionario_ID, veiculo, placa) values(1,10, 'Opala', 'ABC0001');
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,9, 'Fusca', 'ABC0002');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,8, 'Corcel', 'ABC0003');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,7, 'Brasilia', 'ABC0004');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,6, 'Maverick', 'ABC0005');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,5, 'Gol', 'ABC0006');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,4, 'Kombi', 'ABC0007');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,3, 'Uno', 'ABC0008');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,2, 'Jeep', 'ABC0009');
+
+insert veiculos(id, funcionario_ID, veiculo, placa) values(null,1, 'Variant', 'ABC0010');
+
+
+select *from veiculos;
+
+
+
+determinar o campo funcionario_ID na tabela veiculos como chave estrangeira do campo id na tabela funcionarios
+#Altera o campo funcionario_ID chave estrangeira na tabela veiculos, cria relacionamento entre as tabelas funcionarios e veiculos.
+
+use ADS2_curso;
+
+alter table veiculos
+
+add constraint Fk_VEICULOS_FUNCIONARIOS foreign key (funcionario_ID)
+
+references funcionarios(id)
+
+on delete restrict
+ 
+on update restrict;
+
+uso de funções count() e sum()
+#funcao cout , conta o total de funcionarios na tabela funcionarios.
+
+use ads2_curso;
+
+SELECT
+ 
+    COUNT(*) AS 'Total Funcionarios'
+
+FROM
+
+    funcionarios
+
+        INNER JOIN
+    veiculos ON Funcionarios.id = veiculos.id
+
+WHERE
+    departamento = 'TI';
+
+  # select * from funcionarios;
